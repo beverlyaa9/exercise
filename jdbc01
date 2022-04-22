@@ -1,1 +1,82 @@
+*步骤*
+1.加载驱动
+2.连接数据库Driver Manager
+3.获得执行sql的对象 statement
+4.获得返回的结果集
+5.释放连接
+
+---Driver Manager
+Class.forName("com.mysql.cj.jdbc.Driver") //固定写法，加载驱动
+//Connection connection = DriverManager.getConnection(url,username,password);
+//connection代表数据库
+
+//connection.rollback();
+//connection.commit();
+//connection.setAutoCommit();
+
+---URL
+String url = "jdbc:mysql://localhost:3306/jdbcstudy?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC";
+//mysql -- 3306
+//jdbc:mysql://主机地址：端口号/数据库名？参数1&参数2&参数3；
+//协议+主机++端口名
+//oralce -- 1521
+//oracle 没有数据库
+//jdbc:oracle://localhost:1521/sid
+
+
+---Statement 执行SQL的对象  prepareStatement
+String sql = ""//编写SQL
+statement.executeQuery();//查询操作，返回一个结果集
+statement.execute();//执行任何sql，效率低
+statement.executeUpdate();//更新插入、删除，都是用这个，返回一个受影响的行数
+
+
+---ResultSet 查询结果，
+ResultSet resultSet = statement.executeQuery();//返回的结果集，结果集中封装了我们全部的查询结果
++获得指定的类型
+resultSet.getObject();//在不知道列类型的情况下使用
+resultSet.getString();//如果知道列的类型，使用指定的
+resultSet.getInt();
+resultSet.getFloat():
+resultSet.getDate();
++遍历，指针
+result.beforeFirst();//移动到最前面
+result.afterLast();//移动到最后面
+result.next();//移动到下一个数据
+result.previous();//移动到前一行
+result.absolute(row);//移动到指定行
+
+---释放资源（必须完成，因为连接占内存）
+resultSet.close();
+statement.close();
+connection.close();
+
+
+♥Statement♥
+JDBC中的statement对象用于向数据库发送SQL语句，想完成数据库的增删改查，只需要通过这个对象向数据库发送增删改查语句即可。
+statement.executeQuery();//查询操作，返回一个结果集
+statement.executeUpdate();//更新插入、删除，都是用这个，返回一个受影响的行
+增删改都是用update，唯一有区别的是sql语句
+查询使用executeQuery
+
+---代码实现
+提取工具类
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
